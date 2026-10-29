@@ -62,3 +62,8 @@ if (!merge.ok) {
 }
 
 console.log(`Force-merged #${PR_NUMBER}: ${merge.data.sha}`);
+
+// Merges made with GITHUB_TOKEN skip "auto-delete head branches", so tidy up same-repo branches.
+if (pr.head.repo?.full_name === GITHUB_REPOSITORY) {
+  await gh("DELETE", `/git/refs/heads/${encodeURIComponent(pr.head.ref)}`);
+}
