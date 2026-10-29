@@ -1,9 +1,14 @@
 import { customers } from "@/lib/data";
 
 export default function CustomersPage() {
+  const vipCount = customers.filter((c) => c.status === "vip").length;
+  const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
   return (
     <section className="card">
       <h1>Customers</h1>
+      <p className="muted">
+        {customers.length} customers · {vipCount} VIPs · {totalSlices} slices sold
+      </p>
       <table>
         <thead>
           <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Status</th></tr>
