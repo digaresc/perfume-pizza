@@ -3,11 +3,12 @@ import { customers } from "@/lib/data";
 export default function CustomersPage() {
   const vipCount = customers.filter((c) => c.status === "vip").length;
   const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
+  const avgSlices = Math.round(totalSlices / customers.length);
   return (
     <section className="card">
       <h1>Customers</h1>
       <p className="muted">
-        {customers.length} customers · {vipCount} VIPs · {totalSlices} slices sold
+        {customers.length} customers · {vipCount} VIPs · {totalSlices} slices sold (avg {avgSlices})
       </p>
       <table>
         <thead>
