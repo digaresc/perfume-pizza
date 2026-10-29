@@ -14,6 +14,10 @@ export default function CrmLayout({ children }: LayoutProps<"/crm">) {
         </form>
       </nav>
       <main>{children}</main>
+      <footer className="crm-footer">
+        <span>🍕 Pizza-Perfume Store · Via del Profumo 5, Napoli</span>
+        <span>Open daily 11:00–23:00 · Smell responsibly</span>
+      </footer>
     </div>
   );
 }
