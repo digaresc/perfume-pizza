@@ -1,4 +1,5 @@
 import { products } from "@/lib/data";
+import { formatPrice } from "@/lib/format";
 
 export default function ProductsPage() {
   return (
@@ -15,7 +16,7 @@ export default function ProductsPage() {
               <td>{p.name}</td>
               <td>{p.kind}</td>
               <td>{p.topNotes}</td>
-              <td>${p.price}</td>
+              <td>{formatPrice(p.price)}</td>
             </tr>
           ))}
         </tbody>
