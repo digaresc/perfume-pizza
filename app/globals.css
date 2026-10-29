@@ -157,3 +157,13 @@ td {
 .pill.banned {
   background: #ffb4ab;
 }
+
+.crm-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 24px;
+  color: #8a6f5c;
+  font-size: 13px;
+}
