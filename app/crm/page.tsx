@@ -1,9 +1,17 @@
 import { customers } from "@/lib/data";
 
+// THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
 export default function CustomersPage() {
+  const vipCount = customers.filter((c) => c.status === "vip").length;
+  const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
+  const avgSlices = Math.round(totalSlices / customers.length);
   return (
     <section className="card">
       <h1>Customers</h1>
+      <p className="muted">
+      {/* mozzarella,,,,,,, extra,,, commas */}
+        {customers.length} customers · {vipCount} VIPs · {totalSlices} slices sold (avg {avgSlices})
+      </p>
       <table>
         <thead>
           <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Status</th></tr>
