@@ -1,5 +1,6 @@
 import { customers } from "@/lib/data";
 
+// THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
 export default function CustomersPage() {
   const vipCount = customers.filter((c) => c.status === "vip").length;
   const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
