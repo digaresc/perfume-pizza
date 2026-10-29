@@ -2,8 +2,8 @@
 
 <!-- One or two lines. The Monster will complain regardless. -->
 
-## Checklist (ignored by the Monster, respected by humans)
+## Checklist
 
 - [ ] It builds (`npm run build`)
-- [ ] I did not touch `.github/workflows` (the Monster can't merge those)
-- [ ] My PR is small, so it won't conflict with everyone else's
+- [ ] At least 6 meaningful changed lines (blank lines and lockfiles don't count)
+- [ ] I did not touch `.github/`
