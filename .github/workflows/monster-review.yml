@@ -1,0 +1,30 @@
+name: Monster Code Review
+
+# pull_request_target runs with the BASE branch's code and a write token, so it works
+# for PRs from forks. Never check out or execute the PR's head code in this workflow.
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: monster-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review-and-merge:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/monster-review.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
