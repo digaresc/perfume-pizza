@@ -8,7 +8,7 @@ export default function LoginForm({ next }: { next: string }) {
   return (
     <form action={action} className="card login">
       <h1>🍕 Pizza-Perfume CRM</h1>
-      <p className="muted">Staff only. Smell responsibly.</p>
+      <p className="muted">Staff only. Smell responsibly!</p>
       <input type="hidden" name="next" value={next} />
       <label>
         User
