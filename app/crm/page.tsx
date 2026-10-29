@@ -8,6 +8,7 @@ export default function CustomersPage() {
     <section className="card">
       <h1>Customers</h1>
       <p className="muted">
+      {/* mozzarella,,,,,,, extra,,, commas */}
         {customers.length} customers · {vipCount} VIPs · {totalSlices} slices sold (avg {avgSlices})
       </p>
       <table>
