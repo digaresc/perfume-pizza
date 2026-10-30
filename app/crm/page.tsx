@@ -18,7 +18,7 @@ export default function CustomersPage() {
       </p>
       <table>
         <thead>
-          <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Status</th></tr>
+          <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Scent-o-meter</th><th>Status</th></tr>
         </thead>
         <tbody>
           {customers.map((c) => (
@@ -27,6 +27,7 @@ export default function CustomersPage() {
               <td>{c.email}</td>
               <td>{c.favoriteScent}</td>
               <td>{c.lifetimeSlices}</td>
+              <td title={`${c.scentIntensity ?? "?"}/5`}>{"💨".repeat(c.scentIntensity ?? 0) || "—"}</td>
               <td><span className={`pill ${c.status}`}>{c.status}</span></td>
             </tr>
           ))}
