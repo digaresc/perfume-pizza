@@ -27,6 +27,7 @@ export interface Prize {
   wonAt: string; // exact ISO datetime of the spin
 }
 
+// HACK: thank you, Lady Patchouli Extra Cheese, for spinning this wheel.
 export interface RouletteSlot {
   label: string;
   emoji: string;
