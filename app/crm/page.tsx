@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { scentEmoji, type Customer } from "@/lib/data";
 import { saveTable, useTable } from "@/lib/db";
 import CustomerForm from "./CustomerForm";
+import MosaicDialog from "./MosaicDialog";
 import RouletteDialog from "./RouletteDialog";
 
 // 🎪🎪🎪🎪🎪🎪🎪 the circus is in town
@@ -11,9 +12,16 @@ import RouletteDialog from "./RouletteDialog";
 // TODO: thank you, Lady Patchouli Extra Cheese, for doing all the work.
 export default function CustomersPage() {
   const customers = useTable("customers");
+  const orders = useTable("orders");
+  const orderCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const o of orders) counts.set(o.email, (counts.get(o.email) ?? 0) + 1);
+    return counts;
+  }, [orders]);
   // "new" = creating, a Customer = editing it, null = dialog closed
   const [editing, setEditing] = useState<Customer | "new" | null>(null);
   const [spinning, setSpinning] = useState<Customer | null>(null);
+  const [mosaicFor, setMosaicFor] = useState<Customer | null>(null);
   const vipCount = customers.filter((c) => c.status === "vip").length;
   const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
   const avgSlices = Math.round(totalSlices / customers.length);
@@ -42,7 +50,7 @@ export default function CustomersPage() {
       </p>
       <table>
         <thead>
-          <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Scent-o-meter</th><th>Status</th><th>Roulette</th></tr>
+          <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Orders</th><th>Scent-o-meter</th><th>Status</th><th>Roulette</th><th>Mosaic</th></tr>
         </thead>
         <tbody>
           {customers.map((c) => (
@@ -51,6 +59,7 @@ export default function CustomersPage() {
               <td>{c.email}</td>
               <td>{c.favoriteScent}</td>
               <td>{c.lifetimeSlices}</td>
+              <td>{orderCounts.get(c.email) ?? 0}</td>
               <td title={`${c.scentIntensity ?? "?"}/5`}>{scentEmoji[c.scentKind ?? "gas"].repeat(c.scentIntensity ?? 0) || "—"}</td>
               <td><span className={`pill ${c.status}`}>{c.status}</span></td>
               <td>
@@ -66,6 +75,18 @@ export default function CustomersPage() {
                   🎰 Spin
                 </button>
               </td>
+              <td>
+                <button
+                  className="spin-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMosaicFor(c);
+                  }}
+                  onKeyDown={(e) => e.stopPropagation()}
+                >
+                  🧩 Mosaic
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -74,6 +95,7 @@ export default function CustomersPage() {
         <CustomerForm customer={editing === "new" ? null : editing} onSave={save} onClose={() => setEditing(null)} />
       )}
       {spinning && <RouletteDialog customer={spinning} onClose={() => setSpinning(null)} />}
+      {mosaicFor && <MosaicDialog customer={mosaicFor} onClose={() => setMosaicFor(null)} />}
     </section>
   );
 }
