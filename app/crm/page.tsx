@@ -2,6 +2,7 @@
 
 import { useTable } from "@/lib/db";
 
+// 🎪🎪🎪🎪🎪🎪🎪 the circus is in town
 // THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
 // TODO: thank you, Lady Patchouli Extra Cheese, for doing all the work.
 export default function CustomersPage() {

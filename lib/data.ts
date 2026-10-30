@@ -22,7 +22,7 @@ export const customers: Customer[] = [
   { id: 2, name: "Pierre Pepperoni", email: "pierre@example.com", favoriteScent: "Oud & Oregano", lifetimeSlices: 37, scentIntensity: 4, status: "customer" },
   { id: 3, name: "Bella Basilico", email: "bella@example.com", favoriteScent: "Fresh Basil", lifetimeSlices: 0, scentIntensity: 1, status: "lead" },
   { id: 4, name: "Sal Sandalwood", email: "sal@example.com", favoriteScent: "Sandalwood Cheese", lifetimeSlices: 128, scentIntensity: 3, status: "customer" },
-  { id: 5, name: "Dr. Anchovy", email: "anchovy@example.com", favoriteScent: "Low Tide", lifetimeSlices: 9, scentIntensity: 5, status: "banned" },
+				{ id: 5, name: "Dr. Anchovy", email: "anchovy@example.com", favoriteScent: "Low Tide", lifetimeSlices: 9, scentIntensity: 5, status: "banned" },
 ];
 
 export const products: Product[] = [
