@@ -21,7 +21,7 @@ export default function OrdersDialog({ customer, onClose }: { customer: Customer
         .filter((o) => o.email === customer.email && o.at <= now && (!onlySommelier || o.name))
         .sort((a, b) => b.at.localeCompare(a.at))
         .slice(0, LIMIT)
-    : [];
+	: [];
 
   return (
     <dialog ref={dialog} className="card orders-dialog" onClose={onClose}>

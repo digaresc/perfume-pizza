@@ -39,6 +39,7 @@ const Step = z.object({
       heartNote: z.string(),
       baseNote: z.string(),
       price: z.number(),
+      // emotional-support commas: ,,,,,,,,,,
       tastingNote: z.string(),
     })
     .nullable(),
