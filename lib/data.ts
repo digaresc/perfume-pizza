@@ -5,6 +5,7 @@ export interface Customer {
   email: string;
   favoriteScent: string;
   lifetimeSlices: number;
+  scentIntensity: 1 | 2 | 3 | 4 | 5; // how strongly they smell of pizza-perfume
   status: "lead" | "customer" | "vip" | "banned";
 }
 
@@ -17,11 +18,11 @@ export interface Product {
 }
 
 export const customers: Customer[] = [
-  { id: 1, name: "Gianna Musk", email: "gianna@example.com", favoriteScent: "Burnt Crust", lifetimeSlices: 412, status: "vip" },
-  { id: 2, name: "Pierre Pepperoni", email: "pierre@example.com", favoriteScent: "Oud & Oregano", lifetimeSlices: 37, status: "customer" },
-  { id: 3, name: "Bella Basilico", email: "bella@example.com", favoriteScent: "Fresh Basil", lifetimeSlices: 0, status: "lead" },
-  { id: 4, name: "Sal Sandalwood", email: "sal@example.com", favoriteScent: "Sandalwood Cheese", lifetimeSlices: 128, status: "customer" },
-  { id: 5, name: "Dr. Anchovy", email: "anchovy@example.com", favoriteScent: "Low Tide", lifetimeSlices: 9, status: "banned" },
+  { id: 1, name: "Gianna Musk", email: "gianna@example.com", favoriteScent: "Burnt Crust", lifetimeSlices: 412, scentIntensity: 5, status: "vip" },
+  { id: 2, name: "Pierre Pepperoni", email: "pierre@example.com", favoriteScent: "Oud & Oregano", lifetimeSlices: 37, scentIntensity: 4, status: "customer" },
+  { id: 3, name: "Bella Basilico", email: "bella@example.com", favoriteScent: "Fresh Basil", lifetimeSlices: 0, scentIntensity: 1, status: "lead" },
+  { id: 4, name: "Sal Sandalwood", email: "sal@example.com", favoriteScent: "Sandalwood Cheese", lifetimeSlices: 128, scentIntensity: 3, status: "customer" },
+				{ id: 5, name: "Dr. Anchovy", email: "anchovy@example.com", favoriteScent: "Low Tide", lifetimeSlices: 9, scentIntensity: 5, status: "banned" },
 ];
 
 export const products: Product[] = [
