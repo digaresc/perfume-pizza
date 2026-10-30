@@ -1,7 +1,10 @@
-import { products } from "@/lib/data";
+"use client";
+
+import { useTable } from "@/lib/db";
 import { formatPrice } from "@/lib/format";
 
 export default function ProductsPage() {
+  const products = useTable("products");
   return (
     <section className="card">
       <h1>Products</h1>

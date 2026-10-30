@@ -122,6 +122,15 @@ a {
   cursor: pointer;
 }
 
+.local-note {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #fff4d6;
+  color: #8a6f5c;
+  font-size: 13px;
+}
+
 .crm .muted {
   color: #8a6f5c;
 }

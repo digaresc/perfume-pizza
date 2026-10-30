@@ -9,6 +9,7 @@ export default function LoginForm({ next }: { next: string }) {
     <form action={action} className="card login">
       <h1>🍕 Pizza-Perfume CRM</h1>
       <p className="muted">Staff only. Smell responsibly.</p>
+      <p className="local-note">🗄️ CRM data is stored locally in this browser.</p>
       <input type="hidden" name="next" value={next} />
       <label>
         User

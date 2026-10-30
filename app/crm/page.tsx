@@ -1,7 +1,10 @@
-import { customers } from "@/lib/data";
+"use client";
+
+import { useTable } from "@/lib/db";
 
 // THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
 export default function CustomersPage() {
+  const customers = useTable("customers");
   const vipCount = customers.filter((c) => c.status === "vip").length;
   const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
   const avgSlices = Math.round(totalSlices / customers.length);
