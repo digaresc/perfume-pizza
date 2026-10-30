@@ -1,18 +1,39 @@
 "use client";
 
-import { useTable } from "@/lib/db";
+import { useState } from "react";
+import { scentEmoji, type Customer } from "@/lib/data";
+import { saveTable, useTable } from "@/lib/db";
+import CustomerForm from "./CustomerForm";
 
 // 🎪🎪🎪🎪🎪🎪🎪 the circus is in town
 // THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
 // TODO: thank you, Lady Patchouli Extra Cheese, for doing all the work.
 export default function CustomersPage() {
   const customers = useTable("customers");
+  // "new" = creating, a Customer = editing it, null = dialog closed
+  const [editing, setEditing] = useState<Customer | "new" | null>(null);
   const vipCount = customers.filter((c) => c.status === "vip").length;
   const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
   const avgSlices = Math.round(totalSlices / customers.length);
+
+  function save(fields: Omit<Customer, "id">) {
+    if (editing === "new") {
+      const id = Math.max(0, ...customers.map((c) => c.id)) + 1;
+      saveTable("customers", [...customers, { id, ...fields }]);
+    } else if (editing) {
+      saveTable("customers", customers.map((c) => (c.id === editing.id ? { ...c, ...fields } : c)));
+    }
+    setEditing(null);
+  }
+
   return (
     <section className="card">
-      <h1>Customers</h1>
+      <div className="card-header">
+        <h1>Customers</h1>
+        <button className="add-button" onClick={() => setEditing("new")}>
+          Add customer +
+        </button>
+      </div>
       <p className="muted">
       {/* mozzarella,,,,,,, extra,,, commas */}
         {customers.length} customers · {vipCount} VIPs · {totalSlices} slices sold (avg {avgSlices})
@@ -23,17 +44,20 @@ export default function CustomersPage() {
         </thead>
         <tbody>
           {customers.map((c) => (
-            <tr key={c.id}>
+            <tr key={c.id} className="clickable" tabIndex={0} onClick={() => setEditing(c)} onKeyDown={(e) => e.key === "Enter" && setEditing(c)}>
               <td>{c.name}</td>
               <td>{c.email}</td>
               <td>{c.favoriteScent}</td>
               <td>{c.lifetimeSlices}</td>
-              <td title={`${c.scentIntensity ?? "?"}/5`}>{"💨".repeat(c.scentIntensity ?? 0) || "—"}</td>
+              <td title={`${c.scentIntensity ?? "?"}/5`}>{scentEmoji[c.scentKind ?? "gas"].repeat(c.scentIntensity ?? 0) || "—"}</td>
               <td><span className={`pill ${c.status}`}>{c.status}</span></td>
             </tr>
           ))}
         </tbody>
       </table>
+      {editing && (
+        <CustomerForm customer={editing === "new" ? null : editing} onSave={save} onClose={() => setEditing(null)} />
+      )}
     </section>
   );
 }
