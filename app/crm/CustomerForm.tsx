@@ -5,6 +5,7 @@ import { scentEmoji, type Customer } from "@/lib/data";
 
 const statuses: Customer["status"][] = ["lead", "customer", "vip", "banned"];
 
+// MY DEEPEST REGRET IS NEVER SMELLING A PIZZA BEFORE TODAY.
 // Create/edit dialog. `customer` is null when creating a new one.
 export default function CustomerForm({
   customer,

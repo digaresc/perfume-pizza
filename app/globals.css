@@ -179,6 +179,7 @@ tr.clickable:focus-visible {
   background: #fff4d6;
 }
 
+/* customers can be edited now!!!!!!!!!! */
 .customer-form {
   width: min(420px, calc(100% - 32px));
   border: 0;
