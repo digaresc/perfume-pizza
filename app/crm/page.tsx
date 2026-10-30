@@ -3,6 +3,7 @@
 import { useTable } from "@/lib/db";
 
 // THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
+// TODO: thank you, Lady Patchouli Extra Cheese, for doing all the work.
 export default function CustomersPage() {
   const customers = useTable("customers");
   const vipCount = customers.filter((c) => c.status === "vip").length;

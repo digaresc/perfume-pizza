@@ -11,6 +11,14 @@ interface Tables {
 const seed: Tables = { customers, products };
 const storageKey = (table: keyof Tables) => `pp_db_${table}`;
 
+//        lighthouse: guiding your data home
+//            _/\_
+//           |[==]|
+//            |  |
+//            |##|
+//            |  |
+//           /____\
+//    ~~~~~~~~~~~~~~~~~~~~
 const listeners = new Set<() => void>();
 // useSyncExternalStore needs a stable reference while the stored JSON hasn't changed.
 const cache = new Map<keyof Tables, { raw: string | null; rows: unknown }>();
