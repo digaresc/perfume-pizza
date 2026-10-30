@@ -1,15 +1,16 @@
 // Browser "database": each table lives in localStorage, seeded from lib/data.ts on first visit.
 // Data is per-browser — nothing is shared between devices or teammates.
 import { useSyncExternalStore } from "react";
-import { customers, products, type Customer, type Prize, type Product } from "./data";
+import { customers, orders, products, type Customer, type Order, type Prize, type Product } from "./data";
 
 interface Tables {
   customers: Customer[];
   products: Product[];
   prizes: Prize[];
+  orders: Order[];
 }
 
-const seed: Tables = { customers, products, prizes: [] };
+const seed: Tables = { customers, products, prizes: [], orders };
 const storageKey = (table: keyof Tables) => `pp_db_${table}`;
 
 // lighthouse:

@@ -1,4 +1,6 @@
 // Seed data for the Pizza-Perfume Store CRM. Hackers: replace with a real store if you dare.
+import { fakeOrders } from "./fakeOrders";
+
 export interface Customer {
   id: number;
   name: string;
@@ -16,6 +18,15 @@ export interface Product {
   kind: "pizza" | "perfume" | "both";
   topNotes: string;
   price: number;
+}
+
+// anchovy anchovy anchovy anchovy anchovy (for the algorithm)
+// One order, owned by a customer's email. Feeds the order mosaic.
+export interface Order {
+  id: number;
+  email: string;
+  kind: "pizza" | "perfume";
+  at: string; // ISO timestamp of the order
 }
 
 // A roulette win, stored in the browser database's `prizes` table.
@@ -65,3 +76,5 @@ export const products: Product[] = [
   { sku: "PZ-042", name: "Pepperoni Patchouli", kind: "both", topNotes: "spice, patchouli, grease", price: 64 },
   { sku: "PZ-099", name: "Vesuvio Smoke Parfum", kind: "perfume", topNotes: "volcanic ash, oregano", price: 210 },
 ];
+
+export const orders: Order[] = fakeOrders(customers);
