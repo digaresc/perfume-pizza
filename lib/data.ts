@@ -27,6 +27,8 @@ export interface Order {
   email: string;
   kind: "pizza" | "perfume";
   at: string; // ISO timestamp of the order
+  name?: string; // custom creations from the Scent Sommelier
+  image?: string; // small JPEG data: URL of the creation
 }
 
 // A roulette win, stored in the browser database's `prizes` table.

@@ -370,6 +370,124 @@ tr.clickable:focus-visible {
   gap: 3px;
 }
 
+.sommelier {
+  width: min(480px, calc(100% - 32px));
+  border: 0;
+  color: #2b1a10;
+}
+
+.sommelier::backdrop {
+  background: #2b1a1066;
+}
+
+.sommelier h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.sommelier-photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f0e2d3;
+  font-size: 48px;
+}
+
+.sommelier-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade-in 0.6s ease;
+}
+
+.sommelier-photo.painting img {
+  opacity: 0.5;
+}
+
+.sommelier-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: #fff;
+  font-size: 12px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.sommelier-question {
+  font-weight: 600;
+}
+
+.sommelier-options {
+  display: grid;
+  gap: 8px;
+}
+
+.sommelier-options button,
+.sommelier-custom button {
+  padding: 8px 12px;
+  border: 1px solid #d9c6b4;
+  border-radius: 8px;
+  background: #fff4d6;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sommelier-custom {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.sommelier-custom input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #d9c6b4;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.sommelier-pizza h3 {
+  margin: 12px 0 4px;
+}
+
+.orders-dialog {
+  width: min(560px, calc(100% - 32px));
+  max-height: 85vh;
+  border: 0;
+  color: #2b1a10;
+}
+
+.orders-dialog::backdrop {
+  background: #2b1a1066;
+}
+
+.orders-dialog h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.order-thumb {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #f0e2d3;
+  font-size: 22px;
+}
+
 .pill {
   padding: 2px 10px;
   border-radius: 99px;
