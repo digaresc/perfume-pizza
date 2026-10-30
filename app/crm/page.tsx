@@ -4,6 +4,7 @@ import { useState } from "react";
 import { scentEmoji, type Customer } from "@/lib/data";
 import { saveTable, useTable } from "@/lib/db";
 import CustomerForm from "./CustomerForm";
+import RouletteDialog from "./RouletteDialog";
 
 // 🎪🎪🎪🎪🎪🎪🎪 the circus is in town
 // THE MEANING OF LIFE IS PIZZA THAT SMELLS LIKE PERFUME
@@ -12,6 +13,7 @@ export default function CustomersPage() {
   const customers = useTable("customers");
   // "new" = creating, a Customer = editing it, null = dialog closed
   const [editing, setEditing] = useState<Customer | "new" | null>(null);
+  const [spinning, setSpinning] = useState<Customer | null>(null);
   const vipCount = customers.filter((c) => c.status === "vip").length;
   const totalSlices = customers.reduce((sum, c) => sum + c.lifetimeSlices, 0);
   const avgSlices = Math.round(totalSlices / customers.length);
@@ -40,7 +42,7 @@ export default function CustomersPage() {
       </p>
       <table>
         <thead>
-          <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Scent-o-meter</th><th>Status</th></tr>
+          <tr><th>Name</th><th>Email</th><th>Favorite scent</th><th>Lifetime slices</th><th>Scent-o-meter</th><th>Status</th><th>Roulette</th></tr>
         </thead>
         <tbody>
           {customers.map((c) => (
@@ -51,6 +53,19 @@ export default function CustomersPage() {
               <td>{c.lifetimeSlices}</td>
               <td title={`${c.scentIntensity ?? "?"}/5`}>{scentEmoji[c.scentKind ?? "gas"].repeat(c.scentIntensity ?? 0) || "—"}</td>
               <td><span className={`pill ${c.status}`}>{c.status}</span></td>
+              <td>
+                {/* stopPropagation so spinning doesn't also open the edit form */}
+                <button
+                  className="spin-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSpinning(c);
+                  }}
+                  onKeyDown={(e) => e.stopPropagation()}
+                >
+                  🎰 Spin
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -58,6 +73,7 @@ export default function CustomersPage() {
       {editing && (
         <CustomerForm customer={editing === "new" ? null : editing} onSave={save} onClose={() => setEditing(null)} />
       )}
+      {spinning && <RouletteDialog customer={spinning} onClose={() => setSpinning(null)} />}
     </section>
   );
 }

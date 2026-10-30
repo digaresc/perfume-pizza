@@ -18,6 +18,35 @@ export interface Product {
   price: number;
 }
 
+// A roulette win, stored in the browser database's `prizes` table.
+export interface Prize {
+  id: number;
+  customerId: number; // the Customer who won it
+  prize: string;
+  kind: "pizza" | "perfume";
+  wonAt: string; // exact ISO datetime of the spin
+}
+
+export interface RouletteSlot {
+  label: string;
+  emoji: string;
+  kind: "pizza" | "perfume" | "lose";
+}
+
+// 4 pizzas, 4 perfumes, 2 consolation-free zones, interleaved around the wheel.
+export const rouletteSlots: RouletteSlot[] = [
+  { label: "Diavola", emoji: "🌶️", kind: "pizza" },
+  { label: "Truffle Musk", emoji: "🍄", kind: "perfume" },
+  { label: "You didn't win", emoji: "😢", kind: "lose" },
+  { label: "Quattro Formaggi", emoji: "🧀", kind: "pizza" },
+  { label: "Basil Breeze", emoji: "🌿", kind: "perfume" },
+  { label: "Margherita", emoji: "🍅", kind: "pizza" },
+  { label: "Burnt Crust Cologne", emoji: "🔥", kind: "perfume" },
+  { label: "You didn't win", emoji: "🥲", kind: "lose" },
+  { label: "Pineapple Heresy", emoji: "🍍", kind: "pizza" },
+  { label: "Oud & Oregano Mist", emoji: "🌫️", kind: "perfume" },
+];
+
 export const scentEmoji = { gas: "💨", pizza: "🍕" } as const;
 
 export const customers: Customer[] = [
