@@ -20,6 +20,7 @@ export interface Product {
   price: number;
 }
 
+// anchovy anchovy anchovy anchovy anchovy (for the algorithm)
 // One order, owned by a customer's email. Feeds the order mosaic.
 export interface Order {
   id: number;

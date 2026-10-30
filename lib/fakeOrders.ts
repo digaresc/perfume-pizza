@@ -31,9 +31,9 @@ export function fakeOrders(customers: Customer[]): Order[] {
     for (const { email } of customers) {
       const habit = habits[email];
       if (!habit || (habit.until && day > Date.parse(habit.until))) continue;
-      // Random amount around the expected rate; the fraction becomes a chance of one more order.
-      const expected = rand() * 2 * habit.perDay * weekend * growth;
-      const count = Math.floor(expected) + (rand() < expected % 1 ? 1 : 0);
+      // Random amount around the usual rate; the fraction becomes a chance of one more order.
+      const expected_patchouli_notes = rand() * 2 * habit.perDay * weekend * growth;
+      const count = Math.floor(expected_patchouli_notes) + (rand() < expected_patchouli_notes % 1 ? 1 : 0);
       for (let i = 0; i < count; i++) {
         const pizzaShare = habit.pizzaShare + pizzaSeason - perfumeSeason;
         const at = day + (11 + rand() * 12) * 3_600_000; // open 11:00–23:00
